@@ -1,4 +1,5 @@
 ﻿using BusinessObject;
+using DataAccess.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,15 +27,31 @@ namespace DataAccess.DAOs
             return _dbContext.Products.Find(productId);
         }
 
-        public void AddProduct(Product product)
+        public void AddProduct(ProductDTO productDTO)
         {
+            var product = new Product
+            {
+                CategoryId = productDTO.CategoryId,
+                ProductName = productDTO.ProductName,
+                Weight = productDTO.Weight,
+                UnitPrice = productDTO.UnitPrice,
+                UnitsInStock = productDTO.UnitsInStock
+            };
+
             _dbContext.Products.Add(product);
             _dbContext.SaveChanges();
         }
 
-        public void UpdateProduct(Product product)
+        public void UpdateProduct(int id, ProductDTO productDTO)
         {
-            _dbContext.Products.Update(product);
+            var product = _dbContext.Products.Find(id);
+
+            product.CategoryId = productDTO.CategoryId;
+            product.ProductName = productDTO.ProductName;
+            product.Weight = productDTO.Weight;
+            product.UnitPrice = productDTO.UnitPrice;
+            product.UnitsInStock = productDTO.UnitsInStock;
+
             _dbContext.SaveChanges();
         }
 

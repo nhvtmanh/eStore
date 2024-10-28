@@ -1,4 +1,9 @@
 
+using BusinessObject;
+using DataAccess.Repositories.Implementations;
+using DataAccess.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
+
 namespace eStoreAPI
 {
     public class Program
@@ -10,6 +15,17 @@ namespace eStoreAPI
             // Add services to the container.
 
             builder.Services.AddControllers();
+
+            builder.Services.AddDbContext<EStoreDbContext>(options =>
+            {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("eStoreDB"));
+            });
+
+            builder.Services.AddScoped<IMemberRepository, MemberRepository>();
+            builder.Services.AddScoped<IProductRepository, ProductRepository>();
+            builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+            builder.Services.AddScoped<IOrderDetailRepository, OrderDetailRepository>();
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();

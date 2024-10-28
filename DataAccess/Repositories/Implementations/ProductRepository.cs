@@ -1,5 +1,6 @@
 ﻿using BusinessObject;
 using DataAccess.DAOs;
+using DataAccess.DTOs;
 using DataAccess.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -22,9 +23,9 @@ namespace DataAccess.Repositories.Implementations
 
         public Product GetProductById(int productId) => _productDAO.GetProductById(productId);
 
-        public void AddProduct(Product product) => _productDAO.AddProduct(product);
+        public void AddProduct(ProductDTO productDTO) => _productDAO.AddProduct(productDTO);
 
-        public void UpdateProduct(Product product) => _productDAO.UpdateProduct(product);
+        public void UpdateProduct(int id, ProductDTO productDTO) => _productDAO.UpdateProduct(id, productDTO);
 
         public void DeleteProduct(int productId) => _productDAO.DeleteProduct(productId);
     }

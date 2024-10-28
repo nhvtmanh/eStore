@@ -1,6 +1,7 @@
 ﻿using BusinessObject;
 using DataAccess.DAOs;
 using DataAccess.Repositories.Interfaces;
+using eStoreAPI.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,9 +23,9 @@ namespace DataAccess.Repositories.Implementations
 
         public Member GetMemberById(int memberId) => _memberDAO.GetMemberById(memberId);
 
-        public void AddMember(Member member) => _memberDAO.AddMember(member);
+        public void AddMember(MemberDTO memberDTO) => _memberDAO.AddMember(memberDTO);
 
-        public void UpdateMember(Member member) => _memberDAO.UpdateMember(member);
+        public void UpdateMember(int id, MemberDTO memberDTO) => _memberDAO.UpdateMember(id, memberDTO);
 
         public void DeleteMember(int memberId) => _memberDAO.DeleteMember(memberId);
     }

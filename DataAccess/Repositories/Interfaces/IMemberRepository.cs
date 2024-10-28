@@ -1,4 +1,5 @@
 ﻿using BusinessObject;
+using eStoreAPI.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,8 @@ namespace DataAccess.Repositories.Interfaces
     {
         IEnumerable<Member> GetAllMembers();
         Member GetMemberById(int memberId);
-        void AddMember(Member member);
-        void UpdateMember(Member member);
+        void AddMember(MemberDTO memberDTO);
+        void UpdateMember(int id, MemberDTO memberDTO);
         void DeleteMember(int memberId);
     }
 }
